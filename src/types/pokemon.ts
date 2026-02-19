@@ -57,6 +57,7 @@ export type PokemonDetail = {
     other: {
       "official-artwork": {
         front_default: string;
+        front_shiny: string;
       };
     };
   };
@@ -104,17 +105,10 @@ export type PokemonDisplay = {
   genus: string;
   englishName: string;
   image: string;
+  shinyImage: string;
   height: number;
   weight: number;
   types: string[];
   abilities: string[];
   description: string;
-  sprites: {
-    front_default: string;
-    other: {
-      "official-artwork": {
-        front_default: string;
-      };
-    };
-  };
 };

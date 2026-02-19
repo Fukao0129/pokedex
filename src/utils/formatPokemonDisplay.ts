@@ -36,20 +36,24 @@ export const formatPokemonDisplay = (
   // 特性
   const abilities = detail.abilities.map((a) => a.ability.name);
 
+  // 画像
+  const image = detail.sprites.other["official-artwork"].front_default;
+
+  // 色違い画像
+  const shinyImage = detail.sprites.other["official-artwork"].front_shiny;
+
   return {
     id: detail.id,
     name: japaneseName,
     genus,
     englishName: detail.name,
-    image:
-      detail.sprites.other["official-artwork"].front_default ||
-      detail.sprites.front_default,
+    image,
+    shinyImage,
     height: detail.height,
     weight: detail.weight,
     types,
     abilities,
     description,
-    sprites: detail.sprites,
   };
 };
 
