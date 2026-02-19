@@ -1,0 +1,43 @@
+/** タイプの日本語名マッピング */
+export const TYPE_TRANSLATIONS: Record<string, string> = {
+  normal: "ノーマル",
+  fire: "ほのお",
+  water: "みず",
+  electric: "でんき",
+  grass: "くさ",
+  ice: "こおり",
+  fighting: "かくとう",
+  poison: "どく",
+  ground: "じめん",
+  flying: "ひこう",
+  psychic: "エスパー",
+  bug: "むし",
+  rock: "いわ",
+  ghost: "ゴースト",
+  dragon: "ドラゴン",
+  dark: "あく",
+  steel: "はがね",
+  fairy: "フェアリー",
+};
+
+/** 各タイプに応じた色の定義 */
+export const TYPE_COLORS: Record<string, { bg: string; text: string }> = {
+  normal: { bg: "#A8A878", text: "#FFFFFF" },
+  fire: { bg: "#f05630", text: "#FFFFFF" },
+  water: { bg: "#6890F0", text: "#FFFFFF" },
+  electric: { bg: "#F8D030", text: "#000000" },
+  grass: { bg: "#78C850", text: "#FFFFFF" },
+  ice: { bg: "#98D8D8", text: "#000000" },
+  fighting: { bg: "#C03028", text: "#FFFFFF" },
+  poison: { bg: "#A040A0", text: "#FFFFFF" },
+  ground: { bg: "#E0C068", text: "#000000" },
+  flying: { bg: "#A890F0", text: "#FFFFFF" },
+  psychic: { bg: "#F85888", text: "#FFFFFF" },
+  bug: { bg: "#A8B820", text: "#FFFFFF" },
+  rock: { bg: "#b87238", text: "#FFFFFF" },
+  ghost: { bg: "#705898", text: "#FFFFFF" },
+  dragon: { bg: "#7038F8", text: "#FFFFFF" },
+  dark: { bg: "#352b25", text: "#FFFFFF" },
+  steel: { bg: "#cbcbdd", text: "#000000" },
+  fairy: { bg: "#EE99AC", text: "#000000" },
+};
