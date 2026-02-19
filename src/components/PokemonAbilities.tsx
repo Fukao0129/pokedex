@@ -7,10 +7,10 @@ interface PokemonAbilitiesProps {
 export default function PokemonAbilities({ abilities }: PokemonAbilitiesProps) {
   return (
     <div>
-      <p className="font-bold border-b border-gray-300">特性</p>
+      <p className="font-bold border-b border-gray-300 mb-2">特性</p>
       {abilities.length > 0 ? (
         abilities.map((ability) => (
-          <div key={ability.name}>
+          <div key={ability.name} className="mb-2">
             <p className="font-bold">{ability.name}</p>
             <p>{ability.flavorText}</p>
           </div>
