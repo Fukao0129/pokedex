@@ -10,6 +10,6 @@ export const getJapanese = <
   items: T[],
   prop: K,
 ): T[K] | "" => {
-  const item = items.find((item) => item.language.name === "ja");
+  const item = items.find((item) => item.language.name === "ja-hrkt");
   return item ? item[prop] : "";
 };
