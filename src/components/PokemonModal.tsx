@@ -1,3 +1,4 @@
+import { useState } from "react";
 import BaseModal from "./BaseModal";
 import type { PokemonDisplay } from "../types/pokemon";
 import {
@@ -22,6 +23,7 @@ export default function PokemonModal({
   onClose,
 }: PokemonModalProps) {
   const { abilities } = usePokemonAbilities(pokemonData.abilities);
+  const [isShiny, setIsShiny] = useState(false); // 色違い表示フラグ
 
   return (
     <BaseModal isOpen={isOpen} onClose={onClose}>
@@ -30,9 +32,10 @@ export default function PokemonModal({
 
       {/** 画像 */}
       <BaseImage
-        src={pokemonData.image}
+        src={isShiny ? pokemonData.shinyImage : pokemonData.image}
         alt={pokemonData.name}
         className="max-w-xs m-auto"
+        onClick={() => setIsShiny(!isShiny)}
       />
 
       <div className="flex flex-col gap-3 mb-4">
