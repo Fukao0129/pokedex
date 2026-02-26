@@ -46,7 +46,7 @@ export default function Pagination({
   const pageNumbers = getPageNumbers();
 
   return (
-    <div className="flex justify-center items-center gap-2">
+    <div className="flex flex-wrap justify-center items-center gap-2">
       {/** 一番最初に移動 */}
       <PaginationButton
         disabled={offset === 0 || loading}
