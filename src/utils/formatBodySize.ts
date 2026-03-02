@@ -2,7 +2,7 @@
  * @param height - 高さ（デシメートル単位）
  * @returns - 高さ（メートル単位）
  */
-export const convertHeightToMeters = (height: number): string => {
+export const formatHeightToMeters = (height: number): string => {
   return `${height / 10}m`;
 };
 
@@ -10,6 +10,6 @@ export const convertHeightToMeters = (height: number): string => {
  * @param weight - 重さ（ヘクトグラム単位）
  * @returns - 重さ（キログラム単位）
  */
-export const convertWeightToKilograms = (weight: number): string => {
+export const formatWeightToKilograms = (weight: number): string => {
   return `${weight / 10}kg`;
 };

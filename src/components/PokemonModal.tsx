@@ -2,9 +2,9 @@ import { useState } from "react";
 import BaseModal from "./BaseModal";
 import type { PokemonDisplay } from "../types/pokemon";
 import {
-  convertHeightToMeters,
-  convertWeightToKilograms,
-} from "../utils/convertBodySize";
+  formatHeightToMeters,
+  formatWeightToKilograms,
+} from "../utils/formatBodySize";
 import TypeBadge from "./TypeBadge";
 import BaseImage from "./BaseImage";
 import PokemonDescription from "./PokemonDescription";
@@ -62,8 +62,8 @@ export default function PokemonModal({
 
         {/** 高さと重さ */}
         <p>
-          高さ: {convertHeightToMeters(pokemonData.height)} / 重さ:{" "}
-          {convertWeightToKilograms(pokemonData.weight)}
+          高さ: {formatHeightToMeters(pokemonData.height)} / 重さ:{" "}
+          {formatWeightToKilograms(pokemonData.weight)}
         </p>
 
         {/** 説明 */}
