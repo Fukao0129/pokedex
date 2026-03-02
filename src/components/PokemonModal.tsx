@@ -9,6 +9,8 @@ import TypeBadge from "./TypeBadge";
 import BaseImage from "./BaseImage";
 import PokemonDescription from "./PokemonDescription";
 import PokemonAbilities from "./PokemonAbilities";
+import PokemonStats from "./PokemonStats";
+import BaseTab from "./BaseTab";
 import { usePokemonAbilities } from "../hooks/usePokemonAbilities";
 
 interface PokemonModalProps {
@@ -25,6 +27,18 @@ export default function PokemonModal({
   const { abilities } = usePokemonAbilities(pokemonData.abilities);
   const [isShiny, setIsShiny] = useState(false); // 色違い表示フラグ
 
+  // タブ
+  const tabs = [
+    {
+      label: "能力値",
+      content: <PokemonStats stats={pokemonData.stats} />,
+    },
+    {
+      label: "特性",
+      content: <PokemonAbilities abilities={abilities} />,
+    },
+  ];
+
   return (
     <BaseModal isOpen={isOpen} onClose={onClose}>
       <h2 className="font-bold text-2xl">{pokemonData.name}</h2>
@@ -34,17 +48,17 @@ export default function PokemonModal({
       <BaseImage
         src={isShiny ? pokemonData.shinyImage : pokemonData.image}
         alt={pokemonData.name}
-        className="max-w-xs m-auto"
+        className="max-w-3xs sm:max-w-xs m-auto"
         onClick={() => setIsShiny(!isShiny)}
       />
 
       <div className="flex flex-col gap-3 mb-4">
         {/** タイプ */}
-        <p className="flex gap-2">
+        <div className="flex gap-2">
           {pokemonData.types.map((type) => (
             <TypeBadge key={type} typeName={type} />
           ))}
-        </p>
+        </div>
 
         {/** 高さと重さ */}
         <p>
@@ -56,8 +70,8 @@ export default function PokemonModal({
         <PokemonDescription description={pokemonData.description} />
       </div>
 
-      {/** 特性 */}
-      <PokemonAbilities abilities={abilities} />
+      {/** タブ */}
+      <BaseTab tabs={tabs} />
     </BaseModal>
   );
 }

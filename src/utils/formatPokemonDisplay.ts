@@ -42,6 +42,12 @@ export const formatPokemonDisplay = (
   // 色違い画像
   const shinyImage = detail.sprites.other["official-artwork"].front_shiny;
 
+  // 能力値
+  const stats = detail.stats.map((s) => ({
+    name: s.stat.name,
+    value: s.base_stat,
+  }));
+
   return {
     id: detail.id,
     name: japaneseName,
@@ -52,6 +58,7 @@ export const formatPokemonDisplay = (
     height: detail.height,
     weight: detail.weight,
     types,
+    stats,
     abilities,
     description,
   };
