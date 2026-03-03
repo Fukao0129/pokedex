@@ -7,6 +7,8 @@ interface BaseImageProps {
   src: string | null;
   alt: string;
   className?: string;
+  width?: string | number;
+  height?: string | number;
   onClick?: () => void;
 }
 
@@ -15,6 +17,8 @@ export default function BaseImage({
   alt,
   className,
   onClick,
+  width,
+  height,
   ...props
 }: BaseImageProps) {
   const [hasError, setHasError] = useState(false);
@@ -33,6 +37,8 @@ export default function BaseImage({
       onError={handleError}
       className={className}
       onClick={onClick}
+      width={width}
+      height={height}
       {...props}
     />
   );

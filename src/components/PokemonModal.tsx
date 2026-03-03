@@ -48,11 +48,13 @@ export default function PokemonModal({
       <BaseImage
         src={isShiny ? pokemonData.shinyImage : pokemonData.image}
         alt={pokemonData.name}
-        className="max-w-3xs sm:max-w-xs m-auto"
+        className="m-auto"
+        width={250}
+        height={250}
         onClick={() => setIsShiny(!isShiny)}
       />
 
-      <div className="flex flex-col gap-3 mb-4">
+      <div className="flex flex-col gap-3 mt-2 mb-4">
         {/** タイプ */}
         <div className="flex gap-2">
           {pokemonData.types.map((type) => (

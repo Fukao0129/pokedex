@@ -6,10 +6,10 @@ interface PokemonAbilitiesProps {
 
 export default function PokemonAbilities({ abilities }: PokemonAbilitiesProps) {
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       {abilities.length > 0 ? (
         abilities.map((ability) => (
-          <p key={ability.name} className="mb-2">
+          <p key={ability.name}>
             <span className="font-bold">{ability.name}</span>
             <span className="text-sm"> : {ability.flavorText}</span>
           </p>

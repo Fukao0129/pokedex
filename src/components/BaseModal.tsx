@@ -42,7 +42,7 @@ export default function BaseModal({
 
       {/* コンテンツ */}
       <div
-        className="p-6 bg-white rounded max-w-lg w-[90%] fixed inset-0 m-auto h-fit"
+        className="p-6 bg-white rounded max-w-lg w-[90%] fixed inset-0 m-auto h-fit max-h-[90%] overflow-y-auto"
         role="dialog"
         aria-modal="true"
         onClick={(e) => e.stopPropagation()}
