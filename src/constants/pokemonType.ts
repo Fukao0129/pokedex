@@ -1,43 +1,31 @@
-/** タイプの日本語名マッピング */
-export const TYPE_TRANSLATIONS: Record<string, string> = {
-  normal: "ノーマル",
-  fire: "ほのお",
-  water: "みず",
-  electric: "でんき",
-  grass: "くさ",
-  ice: "こおり",
-  fighting: "かくとう",
-  poison: "どく",
-  ground: "じめん",
-  flying: "ひこう",
-  psychic: "エスパー",
-  bug: "むし",
-  rock: "いわ",
-  ghost: "ゴースト",
-  dragon: "ドラゴン",
-  dark: "あく",
-  steel: "はがね",
-  fairy: "フェアリー",
-};
+/** ポケモンのタイプ情報 */
+export interface PokemonType {
+  /** PokeAPIのタイプID */
+  id: string;
+  /** 日本語名 */
+  name: string;
+  /** タイプに応じた色（背景色・文字色） */
+  color: { bg: string; text: string };
+}
 
-/** 各タイプに応じた色の定義 */
-export const TYPE_COLORS: Record<string, { bg: string; text: string }> = {
-  normal: { bg: "#A8A878", text: "#FFFFFF" },
-  fire: { bg: "#f05630", text: "#FFFFFF" },
-  water: { bg: "#6890F0", text: "#FFFFFF" },
-  electric: { bg: "#F8D030", text: "#000000" },
-  grass: { bg: "#78C850", text: "#FFFFFF" },
-  ice: { bg: "#98D8D8", text: "#000000" },
-  fighting: { bg: "#C03028", text: "#FFFFFF" },
-  poison: { bg: "#A040A0", text: "#FFFFFF" },
-  ground: { bg: "#E0C068", text: "#000000" },
-  flying: { bg: "#A890F0", text: "#FFFFFF" },
-  psychic: { bg: "#F85888", text: "#FFFFFF" },
-  bug: { bg: "#A8B820", text: "#FFFFFF" },
-  rock: { bg: "#b87238", text: "#FFFFFF" },
-  ghost: { bg: "#705898", text: "#FFFFFF" },
-  dragon: { bg: "#7038F8", text: "#FFFFFF" },
-  dark: { bg: "#352b25", text: "#FFFFFF" },
-  steel: { bg: "#cbcbdd", text: "#000000" },
-  fairy: { bg: "#EE99AC", text: "#000000" },
+/** タイプの英語名をキーとしたタイプ情報のマッピング */
+export const POKEMON_TYPES: Record<string, PokemonType> = {
+  normal: { id: "1", name: "ノーマル", color: { bg: "#A8A878", text: "#FFFFFF" } },
+  fighting: { id: "2", name: "かくとう", color: { bg: "#C03028", text: "#FFFFFF" } },
+  flying: { id: "3", name: "ひこう", color: { bg: "#A890F0", text: "#FFFFFF" } },
+  poison: { id: "4", name: "どく", color: { bg: "#A040A0", text: "#FFFFFF" } },
+  ground: { id: "5", name: "じめん", color: { bg: "#E0C068", text: "#000000" } },
+  rock: { id: "6", name: "いわ", color: { bg: "#b87238", text: "#FFFFFF" } },
+  bug: { id: "7", name: "むし", color: { bg: "#A8B820", text: "#FFFFFF" } },
+  ghost: { id: "8", name: "ゴースト", color: { bg: "#705898", text: "#FFFFFF" } },
+  steel: { id: "9", name: "はがね", color: { bg: "#cbcbdd", text: "#000000" } },
+  fire: { id: "10", name: "ほのお", color: { bg: "#f05630", text: "#FFFFFF" } },
+  water: { id: "11", name: "みず", color: { bg: "#6890F0", text: "#FFFFFF" } },
+  grass: { id: "12", name: "くさ", color: { bg: "#78C850", text: "#FFFFFF" } },
+  electric: { id: "13", name: "でんき", color: { bg: "#F8D030", text: "#000000" } },
+  psychic: { id: "14", name: "エスパー", color: { bg: "#F85888", text: "#FFFFFF" } },
+  ice: { id: "15", name: "こおり", color: { bg: "#98D8D8", text: "#000000" } },
+  dragon: { id: "16", name: "ドラゴン", color: { bg: "#7038F8", text: "#FFFFFF" } },
+  dark: { id: "17", name: "あく", color: { bg: "#352b25", text: "#FFFFFF" } },
+  fairy: { id: "18", name: "フェアリー", color: { bg: "#EE99AC", text: "#000000" } },
 };
