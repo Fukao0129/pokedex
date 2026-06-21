@@ -1,40 +1,32 @@
-import { useState, useEffect, useCallback } from "react";
+import { useSearchParams } from "react-router";
 
 /**
  * ページネーションのオフセットを管理するカスタムフック
  * @param limit 1ページあたりのアイテム数
- * @returns [offset, setOffset] オフセットとその更新関数
+ * @returns offset と各ページ操作関数
  */
 export const usePaginationOffset = (limit: number) => {
-  /** デフォルトの取得開始位置 */
-  const getInitialOffset = useCallback(() => {
-    const params = new URLSearchParams(window.location.search);
-    const page = parseInt(params.get("page") || "1", 10);
-    return (Math.max(page, 1) - 1) * limit;
-  }, [limit]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [offset, setOffset] = useState(getInitialOffset); // 取得開始位置
+  /** 現在のページ番号 */
+  const page = Math.max(parseInt(searchParams.get("page") ?? "1", 10));
 
-  /** URLとoffsetを同期 */
-  useEffect(() => {
-    const page = Math.floor(offset / limit) + 1;
-    const url = new URL(window.location.href);
-    const currentPage = parseInt(url.searchParams.get("page") || "1", 10);
+  /** 取得開始位置 */
+  const offset = (page - 1) * limit;
 
-    if (page !== currentPage) {
-      url.searchParams.set("page", String(page));
-      window.history.pushState({}, "", url);
-    }
-  }, [offset, limit]);
+  /** 指定したページ番号へ移動 */
+  const goToPage = (next: number) => {
+    setSearchParams((prev) => {
+      prev.set("page", String(Math.max(next, 1)));
+      return prev;
+    });
+  };
 
-  /** ブラウザの戻る・進むボタン対応 */
-  useEffect(() => {
-    const handlePopState = () => {
-      setOffset(getInitialOffset());
-    };
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, [getInitialOffset]);
+  /** 前のページへ移動 */
+  const goToPrev = () => goToPage(page - 1);
 
-  return [offset, setOffset] as const;
+  /** 次のページへ移動 */
+  const goToNext = () => goToPage(page + 1);
+
+  return { offset, goToPrev, goToNext, goToPage } as const;
 };
