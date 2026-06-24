@@ -9,6 +9,15 @@ import { formatPokemonDisplay } from "../utils/formatPokemonDisplay";
 import { callApi } from "../utils/callApi";
 import { BASE_URL } from "../constants";
 
+/** ポケモン一覧取得API */
+const fetchPokemonList = async (limit: number, offset: number) => {
+  const response = await callApi<{
+    results: PokemonListResult[];
+    count: number;
+  }>(`${BASE_URL}/pokemon`, { params: { offset, limit } });
+  return response;
+};
+
 /** ポケモンの表示用データを取得
  * @param limit 取得件数
  * @param offset 取得開始位置
@@ -20,10 +29,7 @@ export const fetchPokemonData = async (
 ): Promise<{ pokemonData: PokemonDisplay[]; count: number }> => {
   try {
     // 一覧APIで各ポケモンの詳細APIエンドポイントを取得する
-    const listData = await callApi<{
-      results: PokemonListResult[];
-      count: number;
-    }>(`${BASE_URL}/pokemon`, { params: { offset, limit } });
+    const listData = await fetchPokemonList(limit, offset);
 
     const pokemonData = listData.results.map(async (item) => {
       // 各ポケモンの詳細APIを実行
@@ -54,4 +60,34 @@ export const getAbility = async (name: string) => {
     `${BASE_URL}/ability/${name}`,
   );
   return response;
+};
+
+/** ポケモンのタイプでフィルタリングして表示用データを取得
+ * @param type_id タイプID
+ */
+export const fetchPokemonDataByType = async (type_id: string) => {
+  try {
+    const listData = await callApi<{
+      pokemon: { pokemon: PokemonListResult }[];
+    }>(`${BASE_URL}/type/${type_id}`);
+
+    const pokemonData = listData.pokemon.map(async (item) => {
+      // 各ポケモンの詳細APIを実行
+      const detail = await callApi<PokemonDetail>(item.pokemon.url);
+
+      // 詳細APIで取得したデータに種族情報APIエンドポイントがあるので実行
+      const species = await callApi<PokemonSpecies>(detail.species.url);
+
+      // フォーマットして返却
+      return formatPokemonDisplay(detail, species);
+    });
+
+    return {
+      pokemonData: await Promise.all(pokemonData),
+      count: listData.pokemon.length,
+    };
+  } catch (error) {
+    console.error("Error fetching pokemon data:", error);
+    return { pokemonData: [], count: 0 };
+  }
 };
